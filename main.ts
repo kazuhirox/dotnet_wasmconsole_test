@@ -10,90 +10,190 @@ export const test = async () => {
   const config = getConfig();
   const exports = await getAssemblyExports(config.mainAssemblyName!);
 
-  //TypeScript:boolean ⇔ C#:bool
+  //TS:boolean → C#:bool?
   const pBool: boolean = true;
-  console.log(exports.MyClass.MethodBool(pBool));
+  console.log("bool?");
+  console.log(`TS: ${exports.MyClass.MethodBool(pBool)}`);
+  console.log(`TS: ${exports.MyClass.MethodBool(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodBool(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:byte
-  const pByte: Number = 0b1;
-  console.log(exports.MyClass.MethodByte(pByte));
+  //TS:number → C#:byte?
+  const pByte: number = 0b1;
+  console.log("byte?");
+  console.log(`TS: ${exports.MyClass.MethodByte(pByte)}`);
+  console.log(`TS: ${exports.MyClass.MethodByte(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodByte(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number[] ⇔ C#:byte[]
-  const pByteArray: Number[] = [0b1, 0b10];
-  console.log(exports.MyClass.MethodByteArray(pByteArray));
+  //TS:number[] → C#:byte[]?
+  const pByteArray: number[] = [0b1, 0b10];
+  console.log("byte[]?");
+  console.log(`TS: ${exports.MyClass.MethodByteArray(pByteArray)}`);
+  console.log(`TS: ${exports.MyClass.MethodByteArray(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodByteArray(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:char
+  //TS:number → C#:char
+  console.log("char");
   const pChar = "あ".codePointAt(0);
-  console.log(exports.MyClass.MethodChar(pChar));
+  console.log(`TS: ${String.fromCharCode(exports.MyClass.MethodChar(pChar))}`);
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:short
-  const pShort: Number = 32767;
-  console.log(exports.MyClass.MethodShort(pShort));
+  //TS:number → C#:char?
+  console.log("char?");
+  const pChar2 = "a".codePointAt(0);
+  console.log(
+    `TS: ${String.fromCharCode(exports.MyClass.MethodCharNullable(pChar2))}`
+  );
+  console.log(
+    `TS: ${String.fromCharCode(exports.MyClass.MethodCharNullable(null))}`
+  );
+  console.log(
+    `TS: ${String.fromCharCode(exports.MyClass.MethodCharNullable(undefined))}`
+  );
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:int
-  const pInt: Number = 2147483647;
-  console.log(exports.MyClass.MethodInt(pInt));
+  //TS:number → C#:short?
+  console.log("short?");
+  const pShort: number = 32767;
+  console.log(`TS: ${exports.MyClass.MethodShort(pShort)}`);
+  console.log(`TS: ${exports.MyClass.MethodShort(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodShort(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number[] ⇔ C#:int[]
-  const pIntArray: Number[] = [-2147483648, 2147483647];
-  console.log(exports.MyClass.MethodIntArray(pIntArray));
+  //TS:number → C#:int?
+  console.log("int?");
+  const pInt: number = 2147483647;
+  console.log(`TS: ${exports.MyClass.MethodInt(pInt)}`);
+  console.log(`TS: ${exports.MyClass.MethodInt(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodInt(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:bigint ⇔ C#:long
+  //TS:number[] → C#:int[]?
+  console.log("int[]?");
+  const pIntArray: number[] = [-2147483648, 2147483647];
+  console.log(`TS: ${exports.MyClass.MethodIntArray(pIntArray)}`);
+  console.log(`TS: ${exports.MyClass.MethodIntArray(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodIntArray(undefined)}`);
+  console.log("--------");
+
+  //TS:bigint → C#:long?
+  console.log("long?");
   const pLong: bigint = 9223372036854775807n;
-  console.log(exports.MyClass.MethodLong(pLong));
+  exports.MyClass.MethodLong(pLong);
+  exports.MyClass.MethodLong(null);
+  exports.MyClass.MethodLong(undefined);
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:float
-  const pFloat: Number = 3.4e28;
-  console.log(exports.MyClass.MethodFloat(pFloat));
+  //TS:number → C#:float?
+  console.log("float?");
+  const pFloat: number = 3.4e28;
+  console.log(`TS: ${exports.MyClass.MethodFloat(pFloat)}`);
+  console.log(`TS: ${exports.MyClass.MethodFloat(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodFloat(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number ⇔ C#:double
-  const pDouble: Number = 1.7e308;
-  console.log(exports.MyClass.MethodDouble(pDouble));
+  //TS:number → C#:double?
+  console.log("double?");
+  const pDouble: number = 1.7e308;
+  console.log(`TS: ${exports.MyClass.MethodDouble(pDouble)}`);
+  console.log(`TS: ${exports.MyClass.MethodDouble(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodDouble(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Number[] ⇔ C#:double[]
-  const pDoubleArray: Number[] = [-5e-324, 1.7e308];
-  console.log(exports.MyClass.MethodDoubleArray(pDoubleArray));
+  //TS:number[] → C#:double[]?
+  console.log("double[]?");
+  const pDoubleArray: number[] = [-5e-324, 1.7e308];
+  console.log(`TS: ${exports.MyClass.MethodDoubleArray(pDoubleArray)}`);
+  console.log(`TS: ${exports.MyClass.MethodDoubleArray(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodDoubleArray(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:Date ⇔ C#:DateTime
+  //TS:Date → C#:DateTime?
+  console.log("DateTime?");
   const pDateTime: Date = new Date();
-  console.log(exports.MyClass.MethodDateTime(pDateTime));
+  exports.MyClass.MethodDateTime(pDateTime);
+  exports.MyClass.MethodDateTime(null);
+  exports.MyClass.MethodDateTime(undefined);
+  console.log("--------");
 
-  //TypeScript:Error ⇔ C#:Exception
+  //TS:Error → C#:Exception?
+  console.log("Exception?");
   const pException: Error = new Error("Error object");
-  console.log(exports.MyClass.MethodException(pException));
+  console.log(`TS: ${exports.MyClass.MethodException(pException)}`);
+  console.log(`TS: ${exports.MyClass.MethodException(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodException(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:object ⇔ C#:JSObject
+  //TS:object → C#:JSObject?
+  console.log("JSObject?");
   const pObject: object = { param1: "abc", param2: 123, param3: true };
-  console.log(exports.MyClass.MethodJSObject(pObject));
+  const retObject = exports.MyClass.MethodJSObject(pObject);
+  console.log(`TS: ${JSON.stringify(retObject)}`);
+  const retObjectNull = exports.MyClass.MethodJSObject(null);
+  console.log(`TS: ${JSON.stringify(retObjectNull)}`);
+  const retObjectUndefined = exports.MyClass.MethodJSObject(undefined);
+  console.log(`TS: ${JSON.stringify(retObjectUndefined)}`);
+  console.log("--------");
 
-  //TypeScript:object[] ⇔ C#:JSObject[]
+  //TS:object[] → C#:JSObject[]?
+  console.log("JSObject[]?");
   const pObjectArray: object[] = [
     { param1: "abc", param2: 123, param3: true },
     { param1: "def", param2: 456, param3: false },
   ];
-  console.log(exports.MyClass.MethodJSObjectArray(pObjectArray));
+  const retObjectArray = exports.MyClass.MethodJSObjectArray(pObjectArray);
+  console.log(`TS: ${JSON.stringify(retObjectArray)}`);
+  const retObjectArrayNull = exports.MyClass.MethodJSObjectArray(null);
+  console.log(`TS: ${JSON.stringify(retObjectArrayNull)}`);
+  const retObjectArrayUndefined =
+    exports.MyClass.MethodJSObjectArray(undefined);
+  console.log(`TS: ${JSON.stringify(retObjectArrayUndefined)}`);
+  console.log("--------");
 
-  //TypeScript:string ⇔ C#:string
+  //TS:string → C#:string?
+  console.log("string?");
   const pString: string = "abc";
-  console.log(exports.MyClass.MethodString(pString));
+  console.log(`TS: ${exports.MyClass.MethodString(pString)}`);
+  console.log(`TS: ${exports.MyClass.MethodString(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodString(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:string[] ⇔ C#:string[]
+  //TS:string[] → C#:string[]?
+  console.log("string[]?");
   const pStringArray: string[] = ["abc", "def"];
-  console.log(exports.MyClass.MethodStringArray(pStringArray));
+  console.log(`TS: ${exports.MyClass.MethodStringArray(pStringArray)}`);
+  console.log(`TS: ${exports.MyClass.MethodStringArray(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodStringArray(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:any ⇔ C#:object
+  //TS:any → C#:object
+  console.log("object?");
   const pAny: any = { param1: "abc", param2: 123, param3: true };
-  console.log(exports.MyClass.MethodAny(pAny));
+  console.log(`TS: ${exports.MyClass.MethodAny(pAny)}`);
+  console.log(`TS: ${exports.MyClass.MethodAny(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodAny(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:any[] ⇔ C#:object[]
+  //TS:any[] → C#:object[]?
+  console.log("object[]?");
   const pAnyArray: any[] = [
     { param1: "abc", param2: 123, param3: true },
     { param1: "def", param2: 456, param3: false },
   ];
-  console.log(exports.MyClass.MethodAnyArray(pAnyArray));
+  console.log(`TS: ${exports.MyClass.MethodAnyArray(pAnyArray)}`);
+  console.log(`TS: ${exports.MyClass.MethodAnyArray(null)}`);
+  console.log(`TS: ${exports.MyClass.MethodAnyArray(undefined)}`);
+  console.log("--------");
 
-  //TypeScript:JSON string ⇔ C#:string(JSON deserialization)
-  console.log(exports.MyClass.MethodJson(JSON.stringify(pAnyArray)));
+  //TS:JSON string → C#:string(JSON)
+  console.log("JSON string");
+  const retJson = JSON.parse(
+    exports.MyClass.MethodJson(JSON.stringify(pAnyArray))
+  );
+  console.log(`TS: ${JSON.stringify(retJson)}`);
+  console.log("--------");
 
   await dotnet.run();
 };

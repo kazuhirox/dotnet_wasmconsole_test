@@ -1,4 +1,4 @@
-## Node application
+## .NET JavaScript interop on WebAssembly
 
 ## Build
 
